@@ -1,0 +1,52 @@
+CPQ Practice Org
+Username :- jhurani_tushar@intimetec.com
+Password :- Test@123
+
+
+Dev Org Creds
+Username :- jhuranitushar@brave-badger-ryhvo1.com
+Password :- April@2025
+
+GitHub Creds for this org
+Client ID :- Ov23liGscmrem9OxphOg
+Client Secret :- 479e177fb92636badbd275d16d4aaea062aca261
+
+public class GitHubIntegration {
+    
+    @AuraEnabled
+    public static String callFromSFDC(String compName){
+        
+        Http htp = new Http();
+        
+        HttpRequest req = new HttpRequest();
+        req.setMethod('GET');
+        
+    }
+    
+
+}
+
+GitHubIntegration.callFromSFDC('GitRepo', 'jhurani-tushar');
+
+
+String response = GitHubPRService.createPullRequest(
+    'jhurani-tushar', // owner
+    'GitRepo',        // repo
+    'dev',            // head (source branch)
+    'main',           // base (target branch)
+    'Merge dev into main',
+    'PR created from Salesforce'
+);
+System.debug(response);
+
+
+Integer prNumber = 12; // the PR number you want to update
+String response = GitHubPRService.updatePullRequest(
+    'jhurani-tushar', // owner
+    'GitRepo',        // repo
+    prNumber,         // PR number
+    'Updated PR Title', // new title (null if you don’t want to change)
+    'Updated PR description', // new body (null if you don’t want to change)
+    null // state ('open' or 'closed', or null if not changing)
+);
+System.debug(response);
